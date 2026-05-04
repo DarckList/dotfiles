@@ -1,0 +1,33 @@
+[core]
+	editor = nvim
+	autocrlf = true
+	longpaths = true
+[fetch]
+	prune = false
+[credential "https://huggingface.co"]
+	provider = generic
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[commit]
+	template = ~/.git-commit-message
+[merge]
+	tool = nvimdiff
+[mergetool "nvimdiff"]
+	cmd = nvim -d "$LOCAL" "$REMOTE" "$BASE" "$MERGED" -c '$wincmd w' -c 'wincmd J'
+[alias]
+	la = log --graph --all --parents --pretty=\"format: %x09%C(magenta)%h %C(green)%p %C(blue) %an %ar%C(auto) %D -> %s\"
+	s = status
+	sb = status -sb
+[rerere]
+	enabled = true
+[diff]
+	tool = nvimdiff
+[difftool "nvimdiff"]
+	cmd = nvim -d "$LOCAL" "$REMOTE"
+[safe]
+	directory = \\\\WIN-OSTUPIN\\Users\\o.stupin\\AppData\\Local\\nvim/.git
+[include]
+	path = ~/.gitconfig_local
